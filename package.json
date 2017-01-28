@@ -1,0 +1,30 @@
+{
+  "name": "kefir.handle",
+  "version": "1.0.0",
+  "description": "Kefir.withHandler() adapter accept a syntax more like Kefir.observe()",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "babel src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frp",
+    "kefir",
+    "kefir.js",
+    "functional"
+  ],
+  "author": "James Holmes <32bitkid@gmail.com>",
+  "homepage": "https://github.com/32bitkid/kefir.handle",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/32bitkid/kefir.handle"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "rimraf": "^2.5.4"
+  }
+}
