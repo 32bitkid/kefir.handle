@@ -1,6 +1,6 @@
 {
   "name": "kefir.handle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Kefir.withHandler() adapter to accept a syntax more like Kefir.observe()",
   "main": "dist/index.js",
   "scripts": {
