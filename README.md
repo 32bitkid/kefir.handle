@@ -28,7 +28,35 @@ A handler is an object with 3 optional methods:
 - `error` - called when the source observable emits an error
 - `end` - called when the source observable has ended
 
-Each of these handlers are invoked with three arguments: an emitter, the value of the event, and an event object. Please note, an `undefined` handler will _automatically_ re-emit events of that type. This is _the opposite_ of the way that `Kefir.withHandler()` works. If you _want_ to discard events, you can use the exported `throwaway` helper:
+Each of these handlers are invoked with three arguments: an emitter, the value of the event, and an event object.
+
+Please note, an `undefined` handler will _automatically_ re-emit events of that type:
+
+```js
+import Kefir from 'kefir';
+import handle from 'kefir.handle';
+
+var source = Kefir.sequentially(100, [0, 1, 2, 3]);
+var result = source .withHandler(handler());
+
+result.log();
+```
+
+```
+> [sequentially.withHandler] <value> 1
+> [sequentially.withHandler] <value> 2
+> [sequentially.withHandler] <value> 3
+> [sequentially.withHandler] <end>
+```
+
+```
+source:  ---0---1---2---3X
+result:  ---•---•---•---•X
+            0   1   2   3
+```
+
+
+This is _the opposite_ of the way that `Kefir.withHandler()` works. If you _want_ to discard events, you can use the exported `throwaway` helper:
 
 ```js
 import handle, { throwaway } from 'kefir.handle';
@@ -77,30 +105,4 @@ result.log();
 source:  ---0---1--- 2---  3 X
 result:  -------•---••---••••X
                 1   22   333bye
-```
-
-
-By default, kefir.handle will pass-through _all_ events directly.
-
-```js
-import Kefir from 'kefir';
-import handle from 'kefir.handle';
-
-var source = Kefir.sequentially(100, [0, 1, 2, 3]);
-var result = source .withHandler(handler());
-
-result.log();
-```
-
-```
-> [sequentially.withHandler] <value> 1
-> [sequentially.withHandler] <value> 2
-> [sequentially.withHandler] <value> 3
-> [sequentially.withHandler] <end>
-```
-
-```
-source:  ---0---1----2-----3X
-result:  -------•----•-----•X
-                1    2     3
 ```
