@@ -1,7 +1,7 @@
 {
   "name": "kefir.handle",
   "version": "1.0.0",
-  "description": "Kefir.withHandler() adapter accept a syntax more like Kefir.observe()",
+  "description": "Kefir.withHandler() adapter to accept a syntax more like Kefir.observe()",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
