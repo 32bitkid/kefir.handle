@@ -1,7 +1,7 @@
 export const throwaway = () => {}
 export const passthrough = (emitter, value, event) => { emitter.event(event); };
 
-export default
+const createHandler =
   ({ value = passthrough, error = passthrough, end = passthrough } = {}) =>
   (emitter, event) => {
     switch (event.type) {
@@ -18,3 +18,9 @@ export default
         return;
     }
   };
+
+export function handle(...args) {
+  return this.withHandler(createHandler(...args));
+}
+
+export default createHandler;
