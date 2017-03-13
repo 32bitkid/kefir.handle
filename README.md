@@ -106,3 +106,16 @@ source:  ---0---1--- 2---  3 X
 result:  -------•---••---••••X
                 1   22   333bye
 ```
+
+### With ES7 `::` bind operator
+
+```
+import { handle } from 'kefir.handle';
+
+var source = Kefir.sequentially(100, [0, 1, 2, 3]);
+var result = source::handle({
+  value(emitter) { /* value handler */ }
+})
+```
+
+
